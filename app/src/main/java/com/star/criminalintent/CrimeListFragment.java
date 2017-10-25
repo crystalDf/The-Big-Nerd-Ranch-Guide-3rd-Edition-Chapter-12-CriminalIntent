@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import java.util.List;
 
-
 public class CrimeListFragment extends Fragment {
 
     public static final int REQUIRES_POLICE = 1;
