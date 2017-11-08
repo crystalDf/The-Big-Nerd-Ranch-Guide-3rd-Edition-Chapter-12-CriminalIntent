@@ -27,6 +27,7 @@ public class CrimePagerActivity extends AppCompatActivity {
     public static Intent newIntent(Context packageContext, UUID crimeId) {
         Intent intent = new Intent(packageContext, CrimePagerActivity.class);
         intent.putExtra(EXTRA_CRIME_ID, crimeId);
+
         return intent;
     }
 
@@ -37,7 +38,7 @@ public class CrimePagerActivity extends AppCompatActivity {
 
         UUID crimeId = (UUID) getIntent().getSerializableExtra(EXTRA_CRIME_ID);
 
-        mViewPager = (ViewPager) findViewById(R.id.activity_crime_pager_view_pager);
+        mViewPager = findViewById(R.id.activity_crime_pager_view_pager);
 
         mCrimes = CrimeLab.getInstance(this).getCrimes();
 
@@ -63,10 +64,10 @@ public class CrimePagerActivity extends AppCompatActivity {
             }
         }
 
-        mJumpToFirstButton = (Button) findViewById(R.id.jump_to_first);
+        mJumpToFirstButton = findViewById(R.id.jump_to_first);
         mJumpToFirstButton.setOnClickListener(v -> mViewPager.setCurrentItem(0));
 
-        mJumpToLastButton = (Button) findViewById(R.id.jump_to_last);
+        mJumpToLastButton = findViewById(R.id.jump_to_last);
         mJumpToLastButton.setOnClickListener(v -> mViewPager.setCurrentItem(mCrimes.size() - 1));
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
