@@ -26,7 +26,7 @@ public class CrimeFragment extends Fragment {
     private static final String DIALOG_DATE = "DialogDate";
     private static final String DIALOG_TIME = "DialogTime";
 
-    private static final int REQUEST_CODE = 0;
+    private static final int REQUEST_DATE = 0;
 
     private Crime mCrime;
     private EditText mTitleField;
@@ -85,12 +85,12 @@ public class CrimeFragment extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 DatePickerFragment datePickerFragment =
                         DatePickerFragment.newInstance(mCrime.getDate());
-                datePickerFragment.setTargetFragment(CrimeFragment.this, REQUEST_CODE);
+                datePickerFragment.setTargetFragment(CrimeFragment.this, REQUEST_DATE);
                 datePickerFragment.show(fragmentManager, DIALOG_DATE);
             } else if (getResources().getConfiguration().orientation
                     == Configuration.ORIENTATION_PORTRAIT) {
                 Intent intent = DatePickerActivity.newIntent(getActivity(), mCrime.getDate());
-                startActivityForResult(intent, REQUEST_CODE);
+                startActivityForResult(intent, REQUEST_DATE);
             }
         });
 
@@ -101,12 +101,12 @@ public class CrimeFragment extends Fragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 TimePickerFragment timePickerFragment =
                         TimePickerFragment.newInstance(mCrime.getDate());
-                timePickerFragment.setTargetFragment(CrimeFragment.this, REQUEST_CODE);
+                timePickerFragment.setTargetFragment(CrimeFragment.this, REQUEST_DATE);
                 timePickerFragment.show(fragmentManager, DIALOG_TIME);
             } else if (getResources().getConfiguration().orientation
                     == Configuration.ORIENTATION_PORTRAIT) {
                 Intent intent = TimePickerActivity.newIntent(getActivity(), mCrime.getDate());
-                startActivityForResult(intent, REQUEST_CODE);
+                startActivityForResult(intent, REQUEST_DATE);
             }
         });
 
@@ -137,7 +137,7 @@ public class CrimeFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_DATE && resultCode == Activity.RESULT_OK) {
             Date date = (Date) data.getSerializableExtra(PickerFragment.EXTRA_DATE);
             mCrime.setDate(date);
             updateUI();
